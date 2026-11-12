@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142d4e">
+  <title>SmartShop — Compare Before You Buy</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="SmartShop home"><span class="brand-mark">S</span><span>Smart<span class="brand-accent">Shop</span><small>COMPARE BEFORE YOU BUY</small></span></a>
+    <nav><a href="#products">Products</a><a href="#compare">Compare</a><a href="#how">How it works</a></nav>
+    <button class="button button-light" id="addTop">＋ Add product</button>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">SMARTER SHOPPING STARTS HERE</p>
+        <h1>Find the right product.<br><span>Keep more in your pocket.</span></h1>
+        <p class="hero-sub">Compare electronics and appliances by price, features, warranty and value — all in one place.</p>
+        <a class="button button-primary" href="#products">Explore products <span>→</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-card art-card-back"><span>VALUE SCORE</span><strong>92<span>/100</span></strong><i>Excellent value</i></div>
+        <div class="art-card art-card-front"><div class="art-icon">⌕</div><b>Compare with confidence</b><small>Price · Quality · Warranty</small><div class="art-bars"><i></i><i></i><i></i></div></div>
+        <div class="sparkle">✦</div>
+      </div>
+    </section>
+    <section class="trust-strip">
+      <div><b>01</b><span>Compare prices</span></div><div><b>02</b><span>Check the details</span></div><div><b>03</b><span>Choose with confidence</span></div>
+    </section>
+    <section class="section" id="products">
+      <div class="section-heading">
+        <div><p class="eyebrow">YOUR SHOPPING SHORTLIST</p><h2>Explore products</h2><p class="muted">Choose products from the list below. Tap “Add to compare” to build your shortlist.</p></div>
+        <button class="button button-primary" id="addMain">＋ Add a product</button>
+      </div>
+      <div class="toolbar">
+        <label class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="Search product, brand or retailer…"></label>
+        <select id="categoryFilter" aria-label="Filter by category"><option value="All">All categories</option><option>Televisions</option><option>Printers</option><option>Refrigerators</option><option>Washing machines</option><option>Laptops</option><option>Other electronics</option></select>
+        <select id="sortFilter" aria-label="Sort products"><option value="recommended">Recommended</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="score">Best value score</option></select>
+      </div>
+      <div class="notice"><span>ⓘ</span><p><b>Demo catalogue:</b> Example products and prices are illustrative only, not live retailer offers. Add verified details before making a buying decision.</p></div>
+      <div id="productGrid" class="product-grid" aria-live="polite"></div>
+      <div id="emptyState" class="empty hidden"><div>⌕</div><h3>No matching products</h3><p>Try another search or add a product to your catalogue.</p></div>
+    </section>
+    <section class="compare-section" id="compare">
+      <div class="section-heading">
+        <div><p class="eyebrow">MAKE THE RIGHT CHOICE</p><h2>Product comparison</h2><p class="muted">Select up to three products to compare side by side.</p></div>
+        <button class="button button-outline" id="clearCompare">Clear selection</button>
+      </div>
+      <div id="compareContent" class="compare-empty"><div class="compare-empty-icon">⇄</div><h3>Your comparison is waiting</h3><p>Select “Compare” on product cards to see the differences here.</p></div>
+    </section>
+    <section class="how-section" id="how">
+      <p class="eyebrow">A SIMPLE WAY TO SHOP SMARTER</p><h2>How SmartShop works</h2>
+      <div class="how-grid">
+        <article><span>1</span><h3>Find products</h3><p>Search the catalogue or enter products from shops you are considering.</p></article>
+        <article><span>2</span><h3>Compare what matters</h3><p>Review price, quality, warranty, energy efficiency and other specifications.</p></article>
+        <article><span>3</span><h3>Choose your value</h3><p>Use the value score as a guide, then check the seller and product details.</p></article>
+      </div>
+    </section>
+  </main>
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark">S</span><span>Smart<span class="brand-accent">Shop</span><small>COMPARE BEFORE YOU BUY</small></span></a><p>Independent comparison concept. Retailer prices and product details must be verified before purchase.</p><span>© <span id="year"></span> SmartShop</span></footer>
+  <dialog id="productDialog">
+    <form id="productForm" method="dialog">
+      <div class="dialog-heading"><div><p class="eyebrow">BUILD YOUR CATALOGUE</p><h2>Add a product</h2></div><button type="button" class="close-button" id="closeDialog" aria-label="Close">×</button></div>
+      <p class="muted form-intro">Enter the details shown by the retailer or manufacturer. Avoid guessing specifications.</p>
+      <div class="form-grid">
+        <label class="full">Product name *<input name="name" required maxlength="90" placeholder="e.g. 55-inch 4K Smart TV"></label>
+        <label>Brand<input name="brand" maxlength="50" placeholder="e.g. Samsung"></label>
+        <label>Category *<select name="category" required><option value="">Choose category</option><option>Televisions</option><option>Printers</option><option>Refrigerators</option><option>Washing machines</option><option>Laptops</option><option>Other electronics</option></select></label>
+        <label>Price (R) *<input name="price" type="number" required min="0.01" step="0.01" placeholder="6999"></label>
+        <label>Retailer<input name="retailer" maxlength="60" placeholder="e.g. Retailer name"></label>
+        <label>Quality rating (1–5)<input name="quality" type="number" min="1" max="5" step="0.1" value="3" required></label>
+        <label>Warranty (years)<input name="warranty" type="number" min="0" max="20" step="0.5" value="1"></label>
+        <label>Energy efficiency (1–5)<input name="energy" type="number" min="1" max="5" step="0.1" value="3"></label>
+        <label class="full">Key specifications<input name="specs" maxlength="140" placeholder="e.g. 4K UHD, Wi-Fi, 3 HDMI ports"></label>
+        <label class="full">Product or retailer link<input name="url" type="url" placeholder="https://…"></label>
+        <label class="full check-label"><input name="verified" type="checkbox"> I have checked these details against the retailer or manufacturer</label>
+      </div>
+      <p class="form-error" id="formError" role="alert"></p>
+      <div class="dialog-actions"><button type="button" class="button button-outline" id="cancelDialog">Cancel</button><button type="submit" class="button button-primary">Save product</button></div>
+    </form>
+  </dialog>
+  <div id="compareDock" class="compare-dock" hidden><span id="compareCount">0 products selected</span><button class="button button-primary" id="openCompare">Compare selected products →</button></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
